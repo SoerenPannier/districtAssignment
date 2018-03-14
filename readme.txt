@@ -1,4 +1,4 @@
-The file ./R/generationAndSampling.R is the master file, creating the austrian
+The file ./R/generationAndSampling.R is the master file, creats the austrian
 pseudo population and sample data used in the R package emdi.
 
 Other R files contain auxiliar functions used by generationAndSampling.R
