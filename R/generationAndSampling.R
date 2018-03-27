@@ -12,7 +12,7 @@ source("./R/createPop.R")
 
 data("eusilcP")
 # creation of a population
-test <- createPop(seed = 96, expension = 8, dispersion = 1, data = eusilcP)
+test <- createPop(seed = 34106, expension = 1, dispersion = 0.8, data = eusilcP)
 
 dim(test$eusilcHHpop)
 
@@ -28,7 +28,7 @@ tempDf <- test$eusilcHHpop[!test$eusilcHHpop$sub_2 %in%
                                                                      quantile(distSizes, 0.25)],]
 tempDf$sub_2 <- factor(tempDf$sub_2, levels = unique(tempDf$sub_2))
 # truncating sample sizes of remaining domains, at 1 and 200 respectively
-smpSizes <- apply(cbind(ceiling(as.numeric(table(tempDf$sub_2)) * 0.025), 200), 1, min)
+smpSizes <- apply(cbind(ceiling(as.numeric(table(tempDf$sub_2)) * 0.1), 200), 1, min)
 
 # stratified sampling
 set.seed(seed = test$seed)
@@ -72,6 +72,9 @@ eusilcA_smp <- results$smp
 eusilcA_smp <- eusilcA_smp[order(eusilcA_smp$district), ]
 levels(eusilcA_smp$district)
 levels(eusilcA_pop$district)
+
+summary(as.numeric(table(eusilcA_pop$district)))
+summary(as.numeric(table(eusilcA_smp$district)))
 
 save(eusilcA_pop, file = "./Data/eusilcA_pop.rda")
 save(eusilcA_smp, file = "./Data/eusilcA_smp.rda")
